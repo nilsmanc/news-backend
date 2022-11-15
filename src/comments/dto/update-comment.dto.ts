@@ -1,4 +1,4 @@
-export class updateCommentDto {
+export class UpdateCommentDto {
   readonly title: string;
   readonly text: string;
 }
