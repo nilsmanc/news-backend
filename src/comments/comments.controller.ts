@@ -5,21 +5,27 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Put,
 } from '@nestjs/common';
+import { CommentsService } from './comments.service';
 
 @Controller('comments')
 export class CommentsController {
+  constructor(private readonly commentsService: CommentsService) {}
+
   @Get()
   getAll() {
-    return 'getAll';
+    return this.commentsService.getAll;
   }
 
   @Post()
-  create(@Body() createCommentDto: CreateCommentDto): string {
-    return `Title: ${createCommentDto.title} Text: ${createCommentDto.text}`;
+  @HttpCode(HttpStatus.CREATED)
+  create(@Body() createCommentDto: CreateCommentDto) {
+    return this.commentsService.create(createCommentDto);
   }
 
   @Delete(':id')
