@@ -9,6 +9,9 @@ export class News {
 
   @Prop()
   text: string;
+
+  @Prop()
+  image: string;
 }
 
 export const NewsSchema = SchemaFactory.createForClass(News);
