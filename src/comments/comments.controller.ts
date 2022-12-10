@@ -23,6 +23,11 @@ export class CommentsController {
     return this.commentsService.getAll();
   }
 
+  @Get(':id')
+  getNewsComments(@Param('id') id: string): Promise<Comment[]> {
+    return this.commentsService.getNewsComments(id);
+  }
+
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createCommentDto: CreateCommentDto): Promise<Comment> {

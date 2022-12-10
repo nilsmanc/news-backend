@@ -15,6 +15,10 @@ export class CommentsService {
     return this.commentsModel.find().exec();
   }
 
+  async getNewsComments(id: string) {
+    return this.commentsModel.find({ newsItem: { _id: id } }).exec();
+  }
+
   async create(commentDto: CreateCommentDto): Promise<Comment> {
     const newComment = new this.commentsModel(commentDto);
     return newComment.save();
