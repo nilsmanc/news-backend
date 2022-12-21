@@ -12,6 +12,9 @@ export class News {
 
   @Prop()
   image: string;
+
+  @Prop()
+  category: string;
 }
 
 export const NewsSchema = SchemaFactory.createForClass(News);

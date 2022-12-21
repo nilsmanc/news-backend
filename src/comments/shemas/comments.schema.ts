@@ -3,7 +3,7 @@ import mongoose, { Document } from 'mongoose';
 
 export type CommentsDocument = Comment & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Comment {
   @Prop()
   text: string;

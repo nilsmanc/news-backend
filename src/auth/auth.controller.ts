@@ -51,8 +51,6 @@ export class AuthController {
     return res.send('User created');
   }
 
-  //
-
   @UseGuards(RefreshJWTGuard)
   @Post('refresh')
   async refreshToken(
