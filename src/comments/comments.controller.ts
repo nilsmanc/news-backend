@@ -10,13 +10,20 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { Comment } from './shemas/comments.schema';
+import { JWTGuard } from 'src/auth/guards/jwt.guards';
+import { Req } from '@nestjs/common/decorators';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('comments')
 export class CommentsController {
-  constructor(private readonly commentsService: CommentsService) {}
+  constructor(
+    private readonly commentsService: CommentsService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Get()
   getAll(): Promise<Comment[]> {
@@ -28,10 +35,19 @@ export class CommentsController {
     return this.commentsService.getNewsComments(id);
   }
 
+  @UseGuards(JWTGuard)
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createCommentDto: CreateCommentDto): Promise<Comment> {
-    return this.commentsService.create(createCommentDto);
+  async create(
+    @Body() createCommentDto: CreateCommentDto,
+    @Req() req,
+  ): Promise<Comment> {
+    const user = await this.authService.getUserByTokenData(req.token);
+
+    return await this.commentsService.create({
+      ...createCommentDto,
+      user: user._id as string,
+    });
   }
 
   @Delete(':id')

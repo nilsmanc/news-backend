@@ -14,4 +14,8 @@ export class NewsService {
   async getById(id: string): Promise<News> {
     return this.newsModel.findById(id);
   }
+
+  async getByCategory(category: string): Promise<News[]> {
+    return this.newsModel.find({ category });
+  }
 }

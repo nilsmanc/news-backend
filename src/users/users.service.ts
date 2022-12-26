@@ -40,4 +40,12 @@ export class UsersService {
   async findOne(username: string): Promise<User> {
     return this.usersModel.findOne({ username });
   }
+
+  async getAll(): Promise<User[]> {
+    return this.usersModel.find().exec();
+  }
+
+  async getById(id: string): Promise<User> {
+    return this.usersModel.findById(id);
+  }
 }

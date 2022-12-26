@@ -1,5 +1,5 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 
 export type CommentsDocument = Comment & Document;
 
@@ -10,6 +10,9 @@ export class Comment {
 
   @Prop()
   newsItem: string;
+
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User' })
+  user: string;
 }
 
 export const CommentsSchema = SchemaFactory.createForClass(Comment);

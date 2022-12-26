@@ -15,4 +15,9 @@ export class NewsController {
   getOne(@Param('id') id: string): Promise<News> {
     return this.newsService.getById(id);
   }
+
+  @Get('category')
+  getCategoryNews(@Param('category') category: string): Promise<News[]> {
+    return this.newsService.getByCategory(category);
+  }
 }

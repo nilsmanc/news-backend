@@ -22,18 +22,8 @@ export class AuthService {
   }
 
   async generateAccessToken(user: User) {
-    return {
-      access_token: this.jwtService.sign({ user }),
-    };
-  }
-
-  async generateRefreshToken(userId: string) {
-    return {
-      refresh_token: this.jwtService.sign(
-        { userId },
-        { secret: jwtConstants.secret, expiresIn: '30d' },
-      ),
-    };
+    const access_token = this.jwtService.sign({ user });
+    return access_token;
   }
 
   verifyToken(token: string) {
