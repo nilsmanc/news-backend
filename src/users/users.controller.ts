@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { AuthService } from 'src/auth/auth.service';
+
 import { User } from './schemas/users.schemas';
 import { UsersService } from './users.service';
 

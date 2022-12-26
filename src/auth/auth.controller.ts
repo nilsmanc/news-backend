@@ -6,10 +6,11 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { Get, Param, Req } from '@nestjs/common/decorators';
+import { Get, Req } from '@nestjs/common/decorators';
 import { Response } from 'express';
-import { User } from 'src/users/schemas/users.schemas';
-import { UsersService } from 'src/users/users.service';
+
+import { User } from '../users/schemas/users.schemas';
+import { UsersService } from '../users/users.service';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';

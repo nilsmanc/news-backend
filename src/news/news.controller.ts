@@ -1,4 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
+
 import { NewsService } from './news.service';
 import { News } from './schemas/news.schema';
 

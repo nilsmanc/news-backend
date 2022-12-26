@@ -1,5 +1,3 @@
-import { JWTSecret } from 'variables';
-
 export const jwtConstants = {
-  secret: JWTSecret,
+  secret: process.env.JWT_SECRET,
 };

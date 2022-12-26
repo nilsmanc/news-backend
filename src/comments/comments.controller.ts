@@ -1,5 +1,3 @@
-import { UpdateCommentDto } from './dto/update-comment.dto';
-import { CreateCommentDto } from './dto/create-comment.dto';
 import {
   Body,
   Controller,
@@ -12,11 +10,14 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
+import { Req } from '@nestjs/common/decorators';
+
+import { UpdateCommentDto } from './dto/update-comment.dto';
+import { CreateCommentDto } from './dto/create-comment.dto';
 import { CommentsService } from './comments.service';
 import { Comment } from './shemas/comments.schema';
-import { JWTGuard } from 'src/auth/guards/jwt.guards';
-import { Req } from '@nestjs/common/decorators';
-import { AuthService } from 'src/auth/auth.service';
+import { JWTGuard } from '../auth/guards/jwt.guards';
+import { AuthService } from '../auth/auth.service';
 
 @Controller('comments')
 export class CommentsController {
