@@ -24,7 +24,8 @@ export class CommentsService {
   }
 
   async create(commentDto: CreateCommentDto): Promise<Comment> {
-    const newComment = new this.commentsModel(commentDto);
+    let newComment = new this.commentsModel(commentDto);
+    newComment = await newComment.populate('user');
     return newComment.save();
   }
 
